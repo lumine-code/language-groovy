@@ -1,7 +1,7 @@
 {
   "name": "Groovy",
   "scopeName": "source.groovy",
-  "type": "modern-tree-sitter",
+  "type": "tree-sitter",
   "parser": "tree-sitter-groovy",
   "injectionRegex": "^(groovy)$",
   "fileTypes": ["groovy", "gradle", "gvy", "jenkinsfile", "Jenkinsfile"],
