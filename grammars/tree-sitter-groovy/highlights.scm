@@ -103,8 +103,12 @@
 
 (type_with_generics (identifier) @support.type.groovy)
 (type_with_generics (generics (identifier) @support.type.groovy))
-(generics [ "<" ">" ] @punctuation.bracket)
-(generic_parameters [ "<" ">" ] @punctuation.bracket)
+(generics
+  "<" @punctuation.definition.generics.begin.bracket.angle.groovy
+  ">" @punctuation.definition.generics.end.bracket.angle.groovy)
+(generic_parameters
+  "<" @punctuation.definition.generics.begin.bracket.angle.groovy
+  ">" @punctuation.definition.generics.end.bracket.angle.groovy)
 ; TODO: Class literals with PascalCase
 
 (declaration ("=") @keyword.operator.groovy)
