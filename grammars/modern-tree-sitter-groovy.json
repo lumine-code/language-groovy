@@ -1,0 +1,22 @@
+{
+  "name": "Groovy",
+  "scopeName": "source.groovy",
+  "type": "modern-tree-sitter",
+  "parser": "tree-sitter-groovy",
+  "injectionRegex": "^(groovy)$",
+  "fileTypes": ["groovy", "gradle", "gvy", "jenkinsfile", "Jenkinsfile"],
+  "comments": {
+    "start": "/ "
+  },
+  "treeSitter": {
+    // Pin a tag or a full SHA, never a branch. Verify the ref is on the main
+    // line before trusting it — `gh api repos/OWNER/REPO/compare/<ref>...HEAD`
+    // reporting `diverged` or a nonzero `behind` means it is not.
+    "parserSource": "github:murtaza64/tree-sitter-groovy#initial",
+    "wasmBuildTool": "tree-sitter-cli#v0.26.11",
+    "grammar": "tree-sitter-groovy/tree-sitter-groovy.wasm",
+    "highlightsQuery": "tree-sitter-groovy/highlights.scm",
+    "localsQuery": "tree-sitter-groovy/locals.scm",
+    "foldsQuery": "tree-sitter-groovy/folds.scm"
+  }
+}
