@@ -9,7 +9,7 @@ const path = require("path");
 
 describe("Groovy Tree-sitter grammar", () => {
   beforeEach(async () => {
-    await atom.packages.activatePackage("language-groovy");
+    await lumine.packages.activatePackage("language-groovy");
   });
 
   it("tokenizes the fixture", async () => {
