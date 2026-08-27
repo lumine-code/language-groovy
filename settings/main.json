@@ -1,12 +1,12 @@
 {
   ".source.groovy": {
-    "language": {
+    "bracket-matcher": {
+      "autocompleteCharacters": ["()", "[]", "{}", "\"\"", "''"]
+    },
+    "editor": {
       "commentStart": "/ ",
       "increaseIndentPattern": "\\{[^}\"']*$",
       "decreaseIndentPattern": "^\\s*\\}"
-    },
-    "bracket-matcher": {
-      "autocompleteCharacters": ["()", "[]", "{}", "\"\"", "''"]
     }
   }
 }
