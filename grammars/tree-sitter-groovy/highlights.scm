@@ -89,7 +89,9 @@
 
 (ternary_op ([ "?" ":" ]) @keyword.operator.groovy)
 
-(map (map_item key: (identifier) @variable.parameter.groovy))
+(map_item
+  key: (identifier) @variable.parameter.groovy
+  (#is? test.typeAt "parent.parent map"))
 
 (parameter type: (identifier) @support.type.groovy name: (identifier) @variable.parameter.groovy)
 (generic_param name: (identifier) @variable.parameter.groovy)

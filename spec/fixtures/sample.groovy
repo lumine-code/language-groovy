@@ -12,5 +12,8 @@ def greet(String name) {
 }
 // <- punctuation.definition.block.end.bracket.curly
 
+def m = [key: 1]
+//       ^ variable.parameter
+
 // a comment
 // <- comment
