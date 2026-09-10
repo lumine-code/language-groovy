@@ -54,12 +54,16 @@
   "synchronized"
 ] @support.type.qualifier.groovy
 
-(comment) @comment.line.groovy
-(shebang) @comment.line.groovy
+((comment) @comment.line.groovy
+  (#set! adjust.endBeforeFirstMatchOf "\\r?$"))
+((shebang) @comment.line.groovy
+  (#set! adjust.endBeforeFirstMatchOf "\\r?$"))
 
 (string) @string.quoted.double.groovy
-(string (escape_sequence) @keyword.operator.groovy)
-(string (interpolation ([ "$" ]) @keyword.operator.groovy))
+((escape_sequence) @keyword.operator.groovy
+  (#is? test.childOfType string))
+((interpolation ([ "$" ]) @keyword.operator.groovy)
+  (#is? test.typeAt "parent.parent string"))
 
 "(" @punctuation.definition.arguments.begin.bracket.round.groovy
 ")" @punctuation.definition.arguments.end.bracket.round.groovy
@@ -85,7 +89,8 @@
   "&&" "||" "?:" "+" "*" ".&" ".@" "?." "*." "*" "*:" "++" "--" "!"
 ] @keyword.operator.groovy
 
-(string ("/") @string.quoted.double.groovy)
+("/" @string.quoted.double.groovy
+  (#is? test.childOfType string))
 
 (ternary_op ([ "?" ":" ]) @keyword.operator.groovy)
 
@@ -104,13 +109,15 @@
 (generic_param superclass: (identifier) @support.type.groovy)
 
 (type_with_generics (identifier) @support.type.groovy)
-(type_with_generics (generics (identifier) @support.type.groovy))
-(generics
-  "<" @punctuation.definition.generics.begin.bracket.angle.groovy
-  ">" @punctuation.definition.generics.end.bracket.angle.groovy)
-(generic_parameters
-  "<" @punctuation.definition.generics.begin.bracket.angle.groovy
-  ">" @punctuation.definition.generics.end.bracket.angle.groovy)
+((identifier) @support.type.groovy
+  (#is? test.typeAt "parent generics")
+  (#is? test.typeAt "parent.parent type_with_generics"))
+("<" @punctuation.definition.generics.begin.bracket.angle.groovy
+  (#is? test.childOfType "generics generic_parameters")
+  (#is? test.first true))
+(">" @punctuation.definition.generics.end.bracket.angle.groovy
+  (#is? test.childOfType "generics generic_parameters")
+  (#is? test.last true))
 ; TODO: Class literals with PascalCase
 
 (declaration ("=") @keyword.operator.groovy)
@@ -121,15 +128,19 @@
 (function_call
   function: (dotted_identifier
 	  (identifier) @entity.name.function.groovy . ))
-(function_call (argument_list
-		 (map_item key: (identifier) @variable.parameter.groovy)))
+((identifier) @variable.parameter.groovy
+  (#is? test.typeAt "parent map_item")
+  (#is? test.typeAt "parent.parent argument_list")
+  (#is? test.typeAt "parent.parent.parent function_call"))
 (juxt_function_call
   function: (identifier) @entity.name.function.groovy)
 (juxt_function_call
   function: (dotted_identifier
 	  (identifier) @entity.name.function.groovy . ))
-(juxt_function_call (argument_list
-		      (map_item key: (identifier) @variable.parameter.groovy)))
+((identifier) @variable.parameter.groovy
+  (#is? test.typeAt "parent map_item")
+  (#is? test.typeAt "parent.parent argument_list")
+  (#is? test.typeAt "parent.parent.parent juxt_function_call"))
 
 (function_definition
   function: (identifier) @entity.name.function.groovy)
@@ -143,11 +154,10 @@
 "pipeline" @keyword.control.groovy
 
 (groovy_doc) @comment.block.documentation.groovy
-(groovy_doc
-  [
-    (groovy_doc_param)
-    (groovy_doc_throws)
-    (groovy_doc_tag)
-  ] @string.other.groovy)
-(groovy_doc (groovy_doc_param (identifier) @variable.parameter.groovy))
-(groovy_doc (groovy_doc_throws (identifier) @support.type.groovy))
+[
+  (groovy_doc_param)
+  (groovy_doc_throws)
+  (groovy_doc_tag)
+] @string.other.groovy
+(groovy_doc_param (identifier) @variable.parameter.groovy)
+(groovy_doc_throws (identifier) @support.type.groovy)
