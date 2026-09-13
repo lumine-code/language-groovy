@@ -3,7 +3,7 @@
   "scopeName": "source.groovy",
   "type": "tree-sitter",
   "parser": "tree-sitter-groovy",
-  "injectionNames": ["groovy"],
+  "injectionNames": ["groovy", "gradle"],
   "fileTypes": ["groovy", "gradle", "gvy", "jenkinsfile", "Jenkinsfile"],
   "comments": {
     "start": "/ "
