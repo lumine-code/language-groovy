@@ -1,0 +1,28 @@
+{
+  "source.groovy": {
+    "text": "class Widget {\n  int count = 1\n  String greet(String name) { return name }\n}\ndef scale(value) { value * 2 }\ndef total = 3\nscale(total)\n// class Phantom {}\n",
+    "symbols": [
+      {
+        "name": "Widget",
+        "tag": "class"
+      },
+      {
+        "name": "count",
+        "tag": "variable"
+      },
+      {
+        "name": "greet",
+        "tag": "method"
+      },
+      {
+        "name": "scale",
+        "tag": "function"
+      },
+      {
+        "name": "total",
+        "tag": "variable"
+      }
+    ],
+    "absent": ["Phantom"]
+  }
+}

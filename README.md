@@ -5,6 +5,7 @@ Groovy language support.
 ## Features
 
 - **Grammars**: provides Tree-sitter grammars, built from [tree-sitter-groovy](https://github.com/murtaza64/tree-sitter-groovy).
+- **Symbols**: classes, methods, functions and declared bindings.
 - **Syntax highlighting**: full tree-sitter grammar coverage for Groovy files.
 - **Folding**: folds blocks from the parse tree rather than by indentation.
 
