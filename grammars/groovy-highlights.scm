@@ -6,15 +6,18 @@
   "case"
   "catch"
   "class"
+  "interface"
   "def"
   "default"
   "else"
   "extends"
   "finally"
   "for"
+  "do"
   "if"
   "import"
   "in"
+  "new"
   "instanceof"
   "package"
   "pipeline"
@@ -60,7 +63,7 @@
   (#set! adjust.endBeforeFirstMatchOf "\\r?$"))
 
 (string) @string.quoted.double.groovy
-((escape_sequence) @keyword.operator.groovy
+((escape_sequence) @constant.character.escape.groovy
   (#is? test.childOfType string))
 ((interpolation ([ "$" ]) @keyword.operator.groovy)
   (#is? test.typeAt "parent.parent string"))
@@ -73,21 +76,25 @@
 "}" @punctuation.definition.block.end.bracket.curly.groovy
 ":" @punctuation.separator.key-value.groovy
 "," @punctuation.separator.comma.groovy
+";" @punctuation.terminator.statement.groovy
 "." @punctuation.separator.property.groovy
 
 (number_literal) @constant.numeric.groovy
 (identifier) @variable.other.groovy
-((identifier) @variable.parameter.groovy
-  )
-
 ((identifier) @constant.other.groovy
-  (#match? @constant.other.groovy "^[A-Z][A-Z_]+"))
+  (#match? @constant.other.groovy "^[A-Z][A-Z_0-9]+$"))
 
 [
   "%" "*" "/" "+" "-" "<<" ">>" ">>>" ".." "..<" "<..<" "<.." "<"
   "<=" ">" ">=" "==" "!=" "<=>" "===" "!==" "=~" "==~" "&" "^" "|"
-  "&&" "||" "?:" "+" "*" ".&" ".@" "?." "*." "*" "*:" "++" "--" "!"
+  "&&" "||" "?:" "+" "**" "->" ".&" ".@" "?." "*." "*" "*:" "++" "--" "!" "~"
 ] @keyword.operator.groovy
+
+(access_op
+  ["?." "*." ".@"]
+  (identifier) @variable.other.member.groovy .)
+(access_op ".&" (identifier) @entity.name.function.groovy .)
+(declaration "_" @variable.other.groovy)
 
 ("/" @string.quoted.double.groovy
   (#is? test.childOfType string))
@@ -98,8 +105,12 @@
   key: (identifier) @variable.parameter.groovy
   (#is? test.typeAt "parent.parent map"))
 
-(parameter type: (identifier) @support.type.groovy name: (identifier) @variable.parameter.groovy)
-(generic_param name: (identifier) @variable.parameter.groovy)
+(parameter type: (identifier) @support.type.groovy)
+(parameter name: (identifier) @variable.parameter.groovy)
+(parameter "=" @keyword.operator.groovy)
+(generic_param name: (identifier) @support.type.groovy)
+(array_type (identifier) @support.type.groovy)
+(array_type "[]" @punctuation.definition.array.bracket.square.groovy)
 
 (declaration type: (identifier) @support.type.groovy)
 (function_definition type: (identifier) @support.type.groovy)
@@ -121,7 +132,9 @@
 ; TODO: Class literals with PascalCase
 
 (declaration ("=") @keyword.operator.groovy)
-(assignment ("=") @keyword.operator.groovy)
+(assignment
+  ["=" "**=" "*=" "/=" "%=" "+=" "-=" "<<=" ">>=" ">>>=" "&=" "^=" "|=" "?="]
+  @keyword.operator.groovy)
 
 (function_call
   function: (identifier) @entity.name.function.groovy)
