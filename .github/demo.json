@@ -1,0 +1,16 @@
+{
+  "title": "language-groovy",
+  "description": "Groovy syntax highlighting in the editor.",
+  "recordedOn": "2026-10-13",
+  "sourceRevision": "334892616c4d38632e53aea6db57b99030e77a51",
+  "mode": "normal",
+  "fontSettings": "default",
+  "images": [
+    {
+      "file": "demo.png",
+      "label": "Groovy syntax highlighting at the default editor font size.",
+      "width": 1100,
+      "height": 360
+    }
+  ]
+}
