@@ -1,6 +1,7 @@
 ----- BEGIN THIRD-PARTY LICENSE: parser:murtaza64_tree-sitter-groovy -----
 Source: https://github.com/murtaza64/tree-sitter-groovy
 Revision: initial
+Query adaptation: indentation from murtaza64/tree-sitter-groovy at 2a6ddd558b6aa39c5b77d8db9fe9baf817486b2c; parser binary remains at initial.
 
 Original file: LICENSE
 

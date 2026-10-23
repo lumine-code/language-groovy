@@ -19,6 +19,7 @@
     "highlightsQuery": "groovy-highlights.scm",
     "injectionsQuery": "groovy-injections.scm",
     "localsQuery": "groovy-locals.scm",
-    "foldsQuery": "groovy-folds.scm"
+    "foldsQuery": "groovy-folds.scm",
+    "indentsQuery": "groovy-indents.scm"
   }
 }
