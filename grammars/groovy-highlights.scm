@@ -58,7 +58,10 @@
 ] @support.type.qualifier.groovy
 
 ((comment) @comment.line.groovy
+  (#match? @comment.line.groovy "^//")
   (#set! adjust.endBeforeFirstMatchOf "\\r?$"))
+((comment) @comment.block.groovy
+  (#match? @comment.block.groovy "^/\\*"))
 ((shebang) @comment.line.groovy
   (#set! adjust.endBeforeFirstMatchOf "\\r?$"))
 
