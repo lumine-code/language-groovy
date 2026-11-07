@@ -3,6 +3,9 @@ Source: https://github.com/murtaza64/tree-sitter-groovy
 Revision: initial
 Query adaptation: indentation from murtaza64/tree-sitter-groovy at 2a6ddd558b6aa39c5b77d8db9fe9baf817486b2c; parser binary remains at initial.
 
+Parser source: github:murtaza64/tree-sitter-groovy#initial
+Resolved commit: 781d9cd1b482a70a6b27091e5c9e14bbcab3b768
+
 Original file: LICENSE
 
 MIT License
